@@ -18,6 +18,11 @@ router.post('/signup',(req,res)=>{
             status: "failed",
             message: "invaild name entered!"
         })
+    }else if (!/^[\w-l.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)){
+        res.json({
+            status: "failed",
+            message: "invalid email entered!"
+        })
     }
     }
 
