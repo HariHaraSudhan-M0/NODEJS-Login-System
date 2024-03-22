@@ -1,5 +1,6 @@
 const express=require('express');
 const router=express.Router()
+const user = require(/Users/hari/Documents/login_server/models/User);
 const app =require('express')();
 router.post('/signup',(req,res)=>{
     let{name,email,password,dateOfBirth}=req.body;
@@ -33,6 +34,15 @@ router.post('/signup',(req,res)=>{
         res.json({
             status: "failed",
             message: "password is too short"
+        })
+    }else {
+        User.find({email}).then(result => {
+            if (result.length){
+                res.json({
+                    status: "failed",
+                    message: "user with the provided email already exists"
+                })
+            }
         })
     }
 })
