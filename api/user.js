@@ -44,7 +44,46 @@ router.post('/signup',(req,res)=>{
                     message: "user with the provided email already exists"
                 })
             }
-            
+            else{
+                //new user
+                const saltRounds =10;
+                bcrypt.hash(password,saltRounds).then(hashedPassword=>{
+                    const newUser = new User({
+                        name,
+                        email,
+                        password: hashedPassword,
+                        dateOfBirth
+                    });
+
+                    newUser.save().then(result => {
+                        res.json({
+                            status: "success",
+                            message: "sign up successful",
+                            data:result,
+                        })
+                    })
+                    .catch(err =>{
+                        res.json({
+                            status:"failed",
+                            message:"an error occured while saving user account password!"
+                        })
+                    })
+                    .catch(err =>{
+                        res.json({
+                            status:"failed",
+                            message:"an error occured while hashing password!"
+                        })
+                    })
+                })
+                .catch(err =>{
+                    res.json({
+                        status: "failed",
+                    message: "error"
+                    })
+                })
+            }
+        })
+    }
 })
 router.post('/signin',(req,res)=>{
     
