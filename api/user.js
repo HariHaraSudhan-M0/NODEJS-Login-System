@@ -8,6 +8,12 @@ router.post('/signup',(req,res)=>{
     password = password.trim();
     dateOfBirth = dateOfBirth.trim();
 
+    if(name == "" || email == "" || password == "" ||dateOfBirth ==""){
+        res.json({
+            status: "failed",
+            message: "empty input fields!"
+        });
+    }
 })
 router.post('/signin',(req,res)=>{
     
