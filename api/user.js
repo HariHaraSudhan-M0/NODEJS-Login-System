@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router()
 const user = require(/Users/hari/Documents/login_server/models/User);
+const bcrypt = require('bcrypt');
 const app =require('express')();
 router.post('/signup',(req,res)=>{
     let{name,email,password,dateOfBirth}=req.body;
@@ -43,8 +44,7 @@ router.post('/signup',(req,res)=>{
                     message: "user with the provided email already exists"
                 })
             }
-        })
-    }
+            
 })
 router.post('/signin',(req,res)=>{
     
