@@ -23,9 +23,17 @@ router.post('/signup',(req,res)=>{
             status: "failed",
             message: "invalid email entered!"
         })
+    }else if (!new Date(dateOfBirth).gettime()){
+        res.json({
+            status: "failed",
+            message: "invaild date entered!"
+        })
     }
-    }
-
+    else if (password <8){
+        res.json({
+            status: "failed",
+            message: "password is too short"
+        })
     }
 })
 router.post('/signin',(req,res)=>{
