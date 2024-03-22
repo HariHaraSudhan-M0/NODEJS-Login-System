@@ -3,7 +3,11 @@ const router=express.Router()
 const app =require('express')();
 router.post('/signup',(req,res)=>{
     let{name,email,password,dateOfBirth}=req.body;
-    name
+    name = name.trim();
+    email = email.trim();
+    password = password.trim();
+    dateOfBirth = dateOfBirth.trim();
+
 })
 router.post('/signin',(req,res)=>{
     
