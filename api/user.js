@@ -13,6 +13,14 @@ router.post('/signup',(req,res)=>{
             status: "failed",
             message: "empty input fields!"
         });
+    }else if(!/^[a-zA-Z ]*$/.test(name)){
+        res.json({
+            status: "failed",
+            message: "invaild name entered!"
+        })
+    }
+    }
+
     }
 })
 router.post('/signin',(req,res)=>{
